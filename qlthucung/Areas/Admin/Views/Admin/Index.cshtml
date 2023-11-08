@@ -1,0 +1,98 @@
+﻿@model PaginatedList<SanPham>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-lg-12 padding-10">
+    <h1>Sản Phẩm</h1>
+
+    <p>
+        <a asp-action="Create">Thêm sản phẩm mới</a>
+    </p>
+
+    <form method="post" asp-controller="Admin" asp-action="Index">
+        <b class="pr-2">Tìm kiếm theo tên</b>
+
+        <div class="d-flex align-items-center">
+            <input id="search" name="search" required type="text" class="form-control mr-1">
+
+            <input type="submit" value="Search" class="btn btn-danger" />
+
+        </div>
+    </form>
+
+    <div class="body fix-width scroll-inner">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>tên sản phẩm</th>
+                    <th>hình</th>
+                    <th>giá gốc</th>
+                    <th>giảm giá</th>
+                    <th>số lượng tồn</th>
+                    <th>giá km</th>
+                    <th>ngày cập nhập</th>
+                    <th>Chức năng</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tensp)
+                        </td>
+                        <td>
+                            <img src=" @Html.DisplayFor(modelItem => item.Hinh)" height="100" />
+                        </td>
+                        <td>
+                            @string.Format("{0:N0}", item.Giaban)
+                        </td>
+                        <td>@Html.DisplayFor(modelItem => item.Giamgia)</td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Soluongton)
+                        </td>
+                        <td>@string.Format("{0:N0}", item.Giakhuyenmai)</td>
+                        <td>
+                            @item.Ngaycapnhat
+                        </td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.Masp" class="text-primary f2"><i class="fa-solid fa-eye"></i></a>
+                            <a asp-action="Edit" asp-route-id="@item.Masp" class="text-primary f2"><i class="fas fa-edit"></i></a>
+                            <a asp-action="Delete" asp-route-id="@item.Masp" class="text-primary f2"><i class="fa-solid fa-trash-can"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <!--Pagination-->
+        <ul class="pagination justify-content-center" style="margin: 10px auto;">
+            @if (Model.HasPreviousPage)
+            {
+                <li class="page-item"><a class="page-link" href="@Url.Action("Index", new { pageNumber = Model.PageIndex - 1 })">Previous</a></li>
+            }
+
+            @for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                if (i == Model.PageIndex)
+                {
+                    <li class="page-item active"><a href="" class="page-link"> @i</a></li>
+                }
+                else
+                {
+                    <li class="page-item"><a class="page-link" href="@Url.Action("Index", new { pageNumber = i })">@i</a></li>
+                }
+            }
+
+            @if (Model.HasNextPage)
+            {
+                <li class="page-item"><a class="page-link" href="@Url.Action("Index", new { pageNumber = Model.PageIndex + 1 })">Next</a></li>
+            }
+        </ul>
+
+    </div>
+</div>

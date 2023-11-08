@@ -1,0 +1,23 @@
+﻿@model DanhMuc
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-lg-12 padding-8">
+    <h1>Chỉnh sửa danh mục</h1>
+
+    <form asp-action="Edit">
+        <input asp-for="IdDanhmuc" type="hidden" /> <!-- Trường ẩn để lưu IdDanhmuc -->
+
+        <div class="form-group">
+            <label for="Tendanhmuc">Tên Danh Mục</label>
+            <input asp-for="Tendanhmuc" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="ParentId">Parent ID</label>
+            <input asp-for="ParentId" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">Lưu</button>
+        <a asp-action="Index">Quay lại danh sách</a>
+    </form>
+</div>

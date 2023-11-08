@@ -1,0 +1,16 @@
+﻿@model DanhMuc
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-lg-12 padding-8">
+<h1>Xóa Danh Mục</h1>
+
+<p>Bạn có chắc chắn muốn xóa danh mục này?</p>
+<p>Tên Danh Mục: @Model.Tendanhmuc</p>
+
+<form asp-action="XoaConfirmed" asp-route-id="@Model.IdDanhmuc" method="post">
+    <button type="submit" class="btn btn-danger">Xác nhận xóa</button>
+    <a asp-action="Index" class="btn btn-secondary">Hủy bỏ</a>
+</form>
+</div>

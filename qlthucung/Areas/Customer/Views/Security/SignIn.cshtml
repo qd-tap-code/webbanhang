@@ -1,0 +1,59 @@
+﻿@model SignIn
+
+@{
+    ViewData["Title"] = "SignIn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<div class="login-form">
+    <div class="height360">
+        <div class="main">
+            <form asp-controller="Security" asp-action="SignIn" method="post" class="form" id="form-2">
+
+                @if (@TempData["LoginErr"] != null)
+                {
+                    <div class="alert alert-danger">@TempData["LoginErr"]</div>
+                }
+
+                <h3 class="heading">Đăng nhập</h3>
+
+                @*<h4 class="text-danger">@ViewBag.msg</h4>
+        <h4 class="text-danger"> @ViewData["blockAccount"]</h4>*@
+
+                <div class="form-group">
+                    <label for="Fullname" class="form-label">Tên tài khoản</label>
+                    <input type="text" asp-for="UserName" class="form-control" />
+                    <span class="form-message"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="form-label">Mật khẩu</label>
+                    <input type="password" asp-for="Password" class="form-control" />
+                    <span class="form-message"></span>
+                </div>
+
+                <label asp-for="RememberMe" for="checkbox1" class="remember"><input type="checkbox" asp-for="RememberMe" id="checkbox1" class="checkbox1"> Ghi nhớ mật khẩu</label>
+
+                <button type="submit" class="form-submit" value="Login" name="login_submit">Đăng nhập</button>
+
+                <div class="dont-have-account">
+                    Bạn chưa có tài khoản? <a class="account-register" asp-controller="Security" asp-action="Register">Đăng ký ngay</a>
+                </div>
+
+                <br />
+                <br />
+                <div class="social-account-wrap">
+                    <h4 class="mb-4"><span>Hoặc đăng nhập với </span></h4>
+                    <ul class="list-unstyled social-account d-flex justify-content-between">
+                        <li><a href="https://accounts.google.com/InteractiveLogin/identifier?elo=1&ifkv=AVQVeywVGsF_auwbZd0R-GPZidtDd-fFbjoJWzQl-Z7glxLMrYFRh2E1uHUAGpMWele3vFAcAy0y&theme=glif&flowName=GlifWebSignIn&flowEntry=ServiceLogin"><img src="~/Content/images/icon-google.svg" alt="Google logo"></a></li>
+                        <li><a href="https://vi-vn.facebook.com/"><img src="~/Content/images/icon-facebook.svg" alt="Facebook logo"></a></li>
+                        <li><a href="https://www.icloud.com/"><img src="~/Content/images/icon-apple.svg" alt="Apple logo"></a></li>
+                        <li><a href="https://twitter.com/i/flow/login"><img src="~/Content/images/icon-twitter.svg" alt="Twitter logo"></a></li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

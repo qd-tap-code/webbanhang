@@ -1,0 +1,64 @@
+﻿@model Register
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-lg-12 padding-8">
+    <h1>Create New Account</h1>
+    <form asp-action="Create" method="post">
+        <div class="form-group">
+            <label class="control-label text-left">Họ và tên</label>
+            <div>
+                <input type="text" asp-for="FullName" class="form-control" />
+            </div>
+            <span asp-validation-for="UserName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label text-left">Tên đăng nhập</label>
+            <div>
+                <input type="text" asp-for="UserName" class="form-control" />
+            </div>
+            <span asp-validation-for="UserName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label text-left">Mật khẩu</label>
+            <div>
+                <input type="password" asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label text-left" for="MatKhauXacNhan">
+                Mật khẩu xác nhận:
+            </label>
+            <div>
+                <input type="password" asp-for="ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label text-left">Email</label>
+            <div>
+                <input type="email" asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label text-left">Ngày sinh</label>
+            <div>
+                <input type="date" class="form-control" asp-for="BirthDate" />
+                <span asp-validation-for="BirthDate" class="text-danger"></span>
+            </div>
+        </div>
+
+        <button type="submit" value="Create" class="form-submit" name="register_submit">Đăng ký</button>
+
+    </form>
+</div>
